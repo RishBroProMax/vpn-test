@@ -5,9 +5,9 @@ services:
     container_name: x-ui
     restart: always
     ports:
-      - "12122:54321"          # 12122 on VPS → 54321 inside container (web GUI)
-      - "40000-40100:40000-40100"  # VLESS client ports
+      - "12122:54321"          # 12122 on VPS → 54321 inside container
+      - "40000-40100:40000-40100"
     volumes:
-      - ./xui-data:/etc/x-ui   # folder to persist configs
+      - ./xui-data:/etc/x-ui
     environment:
       - TZ=Asia/Colombo
