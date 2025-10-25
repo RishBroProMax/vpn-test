@@ -1,14 +1,13 @@
 version: '3.8'
-
 services:
   x-ui:
-    image: enwaiax/x-ui:latest
+    build: .
     container_name: x-ui
     restart: always
     ports:
-      - "12122:54321"    # 12122 on VPS → x-ui web panel
-      - "40000-40100:40000-40100"  # Ports for Xray/VLESS clients (range)
+      - "12122:54321"          # 12122 on VPS → 54321 inside container (web GUI)
+      - "40000-40100:40000-40100"  # VLESS client ports
     volumes:
-      - ./xui-data:/etc/x-ui
+      - ./xui-data:/etc/x-ui   # folder to persist configs
     environment:
       - TZ=Asia/Colombo
