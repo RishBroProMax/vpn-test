@@ -5,10 +5,7 @@ FROM enwaiax/x-ui:latest
 ENV TZ=Asia/Colombo
 
 # Expose ports
-# 54321 → web GUI
-# 40000-40100 → VLESS client ports
-EXPOSE 54321
-EXPOSE 40000-40100
+EXPOSE 54321        # web GUI
+EXPOSE 40000-40100  # VLESS client ports
 
-# Set default command (x-ui runs automatically)
-CMD ["/bin/sh", "-c", "/usr/bin/x-ui"]
+# No CMD or ENTRYPOINT needed! Image already starts x-ui automatically
