@@ -1,12 +1,14 @@
-# Use official Xray-core image
-FROM teddysun/xray:latest
+# Use official x-ui image (includes Xray inside)
+FROM enwaiax/x-ui:latest
 
-# Copy config into container
-COPY config.json /etc/xray/config.json
+# Set timezone (optional)
+ENV TZ=Asia/Colombo
 
-# Expose custom ports (8080 and 8443)
-EXPOSE 8080
-EXPOSE 8443
+# Expose ports
+# 54321 → web GUI
+# 40000-40100 → VLESS client ports
+EXPOSE 54321
+EXPOSE 40000-40100
 
-# Run Xray
-ENTRYPOINT ["/usr/bin/xray", "-config", "/etc/xray/config.json"]
+# Set default command (x-ui runs automatically)
+CMD ["/bin/sh", "-c", "/usr/bin/x-ui"]
