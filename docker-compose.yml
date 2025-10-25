@@ -1,9 +1,14 @@
 version: '3.8'
+
 services:
-  xray:
-    build: .
-    container_name: xray-vless
+  x-ui:
+    image: enwaiax/x-ui:latest
+    container_name: x-ui
+    restart: always
     ports:
-      - "8080:8080"
-      - "8443:8443"
-    restart: unless-stopped
+      - "12122:54321"    # 12122 on VPS → x-ui web panel
+      - "40000-40100:40000-40100"  # Ports for Xray/VLESS clients (range)
+    volumes:
+      - ./xui-data:/etc/x-ui
+    environment:
+      - TZ=Asia/Colombo
